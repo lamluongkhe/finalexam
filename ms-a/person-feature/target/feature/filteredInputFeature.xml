@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="person-feature-1.0-SNAPSHOT" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+    <repository>mvn:org.apache.cxf.karaf/apache-cxf/3.1.11/xml/features</repository>
+    <feature name='person-feature' description='person-feature' version='1.0-SNAPSHOT'>
+        <details>personalized persons</details>
+        <feature>aries-blueprint</feature>
+        <feature>http</feature>
+        <feature>cxf-jaxrs</feature>
+        <feature>cxf-jackson</feature>
+    </feature>
+
+</features>

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1770706121314
+Build-Jdk: 17.0.9
+Built-By: lamluong
+Bundle-Description: api bundle for persons
+Bundle-ManifestVersion: 2
+Bundle-Name: person-api Bundle
+Bundle-SymbolicName: person-api
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.llk.api;version="1.0.0.SNAPSHOT"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.5.0.201709291849

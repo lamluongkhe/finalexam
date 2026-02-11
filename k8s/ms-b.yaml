@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-b
+  namespace: llkhe
+  labels:
+    app: ms-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-b
+  template:
+    metadata:
+      labels:
+        app: ms-b
+    spec:
+      containers:
+      - name: ms-b
+        image: ms-b:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8181
+        volumeMounts:
+        - name: ms-b-config
+          mountPath: /opt/apache-karaf/etc/person-ms-b.cfg
+          subPath: person-ms-b.cfg
+
+        readinessProbe:
+          tcpSocket:
+            port: 8181
+          initialDelaySeconds: 40
+          periodSeconds: 10
+
+        livenessProbe:
+          tcpSocket:
+            port: 8181
+          initialDelaySeconds: 60
+          periodSeconds: 20
+      volumes:
+      - name: ms-b-config
+        configMap:
+          name: ms-b-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-b
+  namespace: llkhe
+spec:
+  selector:
+    app: ms-b
+  ports:
+  - port: 8181
+    targetPort: 8181
+    nodePort: 30182
+  type: NodePort
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ms-b-config
+  namespace: llkhe
+data:
+  person-ms-b.cfg: |
+    # Kafka
+    kafka.bootstrap=kafka:9092
+    kafka.topic=person-events
+    kafka.groupId=person-ms-b
+
+    # Redis
+    redis.host=redis
+    redis.port=6379
