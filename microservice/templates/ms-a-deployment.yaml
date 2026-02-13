@@ -1,0 +1,39 @@
+{{- if .Values.msa.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-a
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-a
+  template:
+    metadata:
+      labels:
+        app: ms-a
+    spec:
+      containers:
+      - name: ms-a
+        image: {{ .Values.msa.image }}
+        imagePullPolicy: {{ .Values.msa.imagePullPolicy }}
+        ports:
+        - containerPort: {{ .Values.msa.port }}
+        env:
+        - name: KAFKA_BOOTSTRAP_SERVERS
+          value: {{ .Values.msa.kafkaServers | quote }}
+        - name: REDIS_HOST
+          value: {{ .Values.msa.redisHost | quote }}
+        - name: REDIS_PORT
+          value: "6379"
+        readinessProbe:
+          tcpSocket:
+            port: {{ .Values.msa.port }}
+          initialDelaySeconds: 40
+        livenessProbe:
+          tcpSocket:
+            port: {{ .Values.msa.port }}
+          initialDelaySeconds: 60
+{{- end }}
+

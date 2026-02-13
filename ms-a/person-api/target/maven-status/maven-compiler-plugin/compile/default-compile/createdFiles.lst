@@ -1,0 +1,5 @@
+com/llk/api/PersonEvent.class
+com/llk/api/PersonEventType.class
+com/llk/api/PersonService.class
+com/llk/api/PersonEventProducer.class
+com/llk/api/Person.class

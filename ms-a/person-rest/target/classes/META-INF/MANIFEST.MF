@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1770951625568
+Build-Jdk: 17.0.9
+Built-By: lamluong
+Bundle-Blueprint: OSGI-INF/blueprint/blueprint.xml
+Bundle-Description: rest proxy for the person service
+Bundle-ManifestVersion: 2
+Bundle-Name: person-rest
+Bundle-SymbolicName: person-rest
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Import-Package: javax.ws.rs;version="[2.0,3)",javax.ws.rs.core;version="
+ [2.0,3)",com.llk.api;version="[1.0,2)",com.fasterxml.jackson.jaxrs.json
+ ,org.osgi.service.blueprint;version="[1.0.0,2.0.0)",javax.ws.rs.ext;ver
+ sion="[2.0,3)"
+Import-Service: com.llk.api.PersonEventProducer;multiple:=false,com.llk.
+ api.PersonService;multiple:=false
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.5.0.201709291849

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.6.0" name="person-feature-1.0-SNAPSHOT">
+    <repository>mvn:org.apache.cxf.karaf/apache-cxf/3.1.11/xml/features</repository>
+    <feature name="person-feature" description="person-feature" version="1.0.0.SNAPSHOT">
+        <details>personalized persons</details>
+        <feature>aries-blueprint</feature>
+        <feature>http</feature>
+        <feature>cxf-jaxrs</feature>
+        <feature>cxf-jackson</feature>
+        <feature prerequisite="true" dependency="false">wrap</feature>
+        <bundle start-level="50">mvn:com.llk/person-api/1.0-SNAPSHOT</bundle>
+        <bundle start-level="50">mvn:com.llk/person-impl/1.0-SNAPSHOT</bundle>
+        <bundle start-level="50">wrap:mvn:org.apache.kafka/kafka-clients/3.7.0</bundle>
+        <bundle start-level="50">mvn:com.google.code.gson/gson/2.10.1</bundle>
+        <bundle start-level="50">mvn:redis.clients/jedis/4.4.3</bundle>
+        <bundle start-level="50">mvn:org.apache.commons/commons-pool2/2.11.1</bundle>
+        <bundle start-level="50">mvn:org.json/json/20230227</bundle>
+        <bundle start-level="50">mvn:com.llk/person-rest/1.0-SNAPSHOT</bundle>
+    </feature>
+</features>

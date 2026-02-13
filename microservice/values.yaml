@@ -1,0 +1,20 @@
+namespace: llkhe
+
+msa:
+  enabled: true
+  image: "ms-a:latest"
+  imagePullPolicy: Never
+  port: 8181
+  nodePort: 30181
+  kafkaServers: "kafka-1:29092"
+  redisHost: "redis"
+
+msb:
+  enabled: true
+  image: "ms-b:latest"
+  imagePullPolicy: Never
+  port: 8181
+  nodePort: 30182
+  kafkaServers: "kafka-1:29092"
+  redisHost: "redis"
+

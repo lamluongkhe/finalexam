@@ -1,0 +1,16 @@
+{{- if .Values.msb.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-b
+  namespace: {{ .Values.namespace }}
+spec:
+  type: NodePort
+  selector:
+    app: ms-b
+  ports:
+  - port: {{ .Values.msb.port }}
+    targetPort: {{ .Values.msb.port }}
+    nodePort: {{ .Values.msb.nodePort }}
+{{- end }}
+

@@ -1,0 +1,16 @@
+{{- if .Values.msa.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-a
+  namespace: {{ .Values.namespace }}
+spec:
+  type: NodePort
+  selector:
+    app: ms-a
+  ports:
+  - port: {{ .Values.msa.port }}
+    targetPort: {{ .Values.msa.port }}
+    nodePort: {{ .Values.msa.nodePort }}
+{{- end }}
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+
+    <bean id="jedis" class="redis.clients.jedis.Jedis">
+        <argument value="redis"/>
+        <argument value="6379"/>
+    </bean>
+
+    <bean id="personService" class="com.llk.implB.PersonImpl">
+        <property name="jedis" ref="jedis"/>
+    </bean>
+
+    <bean id="personKafkaConsumer"
+          class="com.llk.implB.kafka.PersonKafkaConsumer"
+          init-method="start"
+          destroy-method="stop">
+        <property name="personService" ref="personService"/>
+    </bean>
+
+    <service ref="personService" interface="com.llk.apiB.PersonService"/>
+    <service ref="personKafkaConsumer" interface="com.llk.apiB.PersonEventConsumer"/>
+</blueprint>

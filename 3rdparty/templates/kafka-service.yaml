@@ -1,0 +1,19 @@
+{{- if .Values.kafka.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.kafka.broker.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+  - name: external
+    port: {{ .Values.kafka.ports.external }}
+    targetPort: {{ .Values.kafka.ports.external }}
+  - name: internal
+    port: {{ .Values.kafka.ports.internal }}
+    targetPort: {{ .Values.kafka.ports.internal }}
+  selector:
+    app: {{ .Values.kafka.broker.name }}
+  type: ClusterIP
+{{- end }}
+

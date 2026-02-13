@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1770951625298
+Build-Jdk: 17.0.9
+Built-By: lamluong
+Bundle-Blueprint: OSGI-INF/blueprint/blueprint.xml
+Bundle-Description: simple implementation for persons
+Bundle-ManifestVersion: 2
+Bundle-Name: person-impl
+Bundle-SymbolicName: person-impl
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.llk.impl.kafka;uses:="com.llk.api";version="1.0.0.SN
+ APSHOT"
+Export-Service: com.llk.api.PersonService;osgi.service.blueprint.compnam
+ e=personService,com.llk.api.PersonEventProducer;osgi.service.blueprint.
+ compname=kafkaProducer
+Import-Package: org.apache.kafka.common.serialization,org.apache.kafka.c
+ lients.producer,com.google.gson;version="[2.10,3)",com.llk.api;version=
+ "[1.0,2)",com.llk.impl.kafka,org.osgi.service.blueprint;version="[1.0.0
+ ,2.0.0)",redis.clients.jedis;version="[4.4,5)",org.apache.kafka.common.
+ config
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.5.0.201709291849
