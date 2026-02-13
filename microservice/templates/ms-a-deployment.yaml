@@ -20,20 +20,31 @@ spec:
         imagePullPolicy: {{ .Values.msa.imagePullPolicy }}
         ports:
         - containerPort: {{ .Values.msa.port }}
+        
         env:
         - name: KAFKA_BOOTSTRAP_SERVERS
-          value: {{ .Values.msa.kafkaServers | quote }}
+          value: "{{ .Values.msa.kafkaServers }}:{{ .Values.msa.kafkaPort }}"
+        - name: KAFKA_TOPIC
+          value: {{ .Values.msa.kafkaTopic | quote }}
         - name: REDIS_HOST
           value: {{ .Values.msa.redisHost | quote }}
         - name: REDIS_PORT
-          value: "6379"
+          value: {{ .Values.msa.redisPort | quote }}
+        - name: EXTRA_JAVA_OPTS
+          value: >-
+            -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+            -Dkafka.servers={{ .Values.msa.kafkaServers }}:{{ .Values.global.kafkaPort }}
+            -Dredis.host={{ .Values.msa.redisHost }}
+
         readinessProbe:
           tcpSocket:
             port: {{ .Values.msa.port }}
           initialDelaySeconds: 40
+          periodSeconds: 10
         livenessProbe:
           tcpSocket:
             port: {{ .Values.msa.port }}
           initialDelaySeconds: 60
+          periodSeconds: 20
 {{- end }}
 

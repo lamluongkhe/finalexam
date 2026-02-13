@@ -61,6 +61,9 @@
                         <Bundle-Version>${project.version}</Bundle-Version>
                         <Export-Package/>
                         <Import-Package>
+                            org.apache.kafka.common.serialization,
+                            org.apache.kafka.clients.consumer,
+                            org.apache.kafka.common.errors,
                             *
                         </Import-Package>
                     </instructions>

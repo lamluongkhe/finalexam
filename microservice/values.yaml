@@ -6,15 +6,23 @@ msa:
   imagePullPolicy: Never
   port: 8181
   nodePort: 30181
-  kafkaServers: "kafka-1:29092"
+  kafkaServers: "kafka-1"
+  kafkaPort: 29092
+  kafkaTopic: "person-events"
   redisHost: "redis"
+  redisPort: 6379
+
+
 
 msb:
   enabled: true
   image: "ms-b:latest"
   imagePullPolicy: Never
   port: 8181
-  nodePort: 30182
-  kafkaServers: "kafka-1:29092"
+  kafkaServers: "kafka-1"
+  kafkaPort: 29092
+  kafkaTopic: "person-events"
+  kafkaGroup: "person-ms-b"
   redisHost: "redis"
+  redisPort: 6379
 

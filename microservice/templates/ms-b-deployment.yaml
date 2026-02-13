@@ -22,18 +22,18 @@ spec:
         - containerPort: {{ .Values.msb.port }}
         env:
         - name: KAFKA_BOOTSTRAP_SERVERS
-          value: {{ .Values.msb.kafkaServers | quote }}
+          value: "{{ .Values.msb.kafkaServers }}:{{ .Values.msb.kafkaPort }}"
+        - name: KAFKA_TOPIC
+          value: {{ .Values.msb.kafkaTopic | quote }}
+        - name: KAFKA_GROUP
+          value: {{ .Values.msb.kafkaGroup | quote }}
         - name: REDIS_HOST
           value: {{ .Values.msb.redisHost | quote }}
         - name: REDIS_PORT
-          value: "6379"
+          value: {{ .Values.msb.redisPort | quote }}
         readinessProbe:
           tcpSocket:
             port: {{ .Values.msb.port }}
           initialDelaySeconds: 40
-        livenessProbe:
-          tcpSocket:
-            port: {{ .Values.msb.port }}
-          initialDelaySeconds: 60
 {{- end }}
 

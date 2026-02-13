@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1770712112295
+Bnd-LastModified: 1770972664366
 Build-Jdk: 17.0.9
 Built-By: lamluong
 Bundle-Blueprint: OSGI-INF/blueprint/blueprint.xml
@@ -12,9 +12,9 @@ Created-By: Apache Maven Bundle Plugin
 Export-Service: com.llk.apiB.PersonService;osgi.service.blueprint.compna
  me=personService,com.llk.apiB.PersonEventConsumer;osgi.service.blueprin
  t.compname=personKafkaConsumer
-Import-Package: com.google.gson;version="[2.10,3)",com.llk.apiB;version=
- "[1.0,2)",org.apache.kafka.clients.consumer,org.apache.kafka.common.err
- ors,org.apache.kafka.common.serialization,org.osgi.service.blueprint;ve
+Import-Package: org.apache.kafka.common.serialization,org.apache.kafka.c
+ lients.consumer,org.apache.kafka.common.errors,com.google.gson;version=
+ "[2.10,3)",com.llk.apiB;version="[1.0,2)",org.osgi.service.blueprint;ve
  rsion="[1.0.0,2.0.0)",redis.clients.jedis;version="[4.4,5)"
 Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 Tool: Bnd-3.5.0.201709291849

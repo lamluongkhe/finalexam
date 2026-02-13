@@ -24,22 +24,36 @@ public class PersonKafkaConsumer  implements Runnable, PersonEventConsumer {
     public void setPersonService(PersonService personService) {
         this.personService = personService;
     }
+
+
+    private String bootstrapServers;
+    private String topic;
+    private String groupId;
+    public void setBootstrapServers(String bootstrapServers) {
+        this.bootstrapServers = bootstrapServers;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
     @Override
     public void start() {
         Properties props = new Properties();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "kafka-1:29092");
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "person-ms-b");
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
 
         consumer = new KafkaConsumer<>(props);
-        consumer.subscribe(Collections.singletonList("person-events"));
+        consumer.subscribe(Collections.singletonList(topic));
         thread = new Thread(this, "person-kafka-consumer");
         thread.start();
-        System.out.println("Kafka Consumer STARTED");
-
+        System.out.println("Kafka Consumer STARTED on topic: " + topic);
     }
 
     @Override

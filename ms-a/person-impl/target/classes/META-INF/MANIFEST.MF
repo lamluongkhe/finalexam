@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1770951625298
+Bnd-LastModified: 1770972057303
 Build-Jdk: 17.0.9
 Built-By: lamluong
 Bundle-Blueprint: OSGI-INF/blueprint/blueprint.xml
@@ -11,9 +11,9 @@ Bundle-Version: 1.0.0.SNAPSHOT
 Created-By: Apache Maven Bundle Plugin
 Export-Package: com.llk.impl.kafka;uses:="com.llk.api";version="1.0.0.SN
  APSHOT"
-Export-Service: com.llk.api.PersonService;osgi.service.blueprint.compnam
- e=personService,com.llk.api.PersonEventProducer;osgi.service.blueprint.
- compname=kafkaProducer
+Export-Service: com.llk.api.PersonEventProducer;osgi.service.blueprint.c
+ ompname=kafkaProducer,com.llk.api.PersonService;osgi.service.blueprint.
+ compname=personService
 Import-Package: org.apache.kafka.common.serialization,org.apache.kafka.c
  lients.producer,com.google.gson;version="[2.10,3)",com.llk.api;version=
  "[1.0,2)",com.llk.impl.kafka,org.osgi.service.blueprint;version="[1.0.0
