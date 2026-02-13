@@ -1,8 +1,0 @@
-local:com.llk:person-api:jar:1.0-SNAPSHOT (compile)
-local:com.llk:person-impl:jar:1.0-SNAPSHOT (compile)
- local:org.apache.kafka:kafka-clients:jar:3.7.0 (compile)
- local:com.google.code.gson:gson:jar:2.10.1 (compile)
- local:redis.clients:jedis:jar:4.4.3 (compile)
-  local:org.apache.commons:commons-pool2:jar:2.11.1 (compile)
-  local:org.json:json:jar:20230227 (compile)
-local:com.llk:person-rest:jar:1.0-SNAPSHOT (compile)
